@@ -1,9 +1,14 @@
+# Tuval Database
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/tuvalframework/database/blob/main/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@tuval/database/latest.svg)](https://www.npmjs.com/package/@tuval/database)
 [![npm downloads](https://img.shields.io/npm/dm/@tuval/database.svg)](https://www.npmjs.com/package/@tuval/database)
 [![Follow on Twitter](https://img.shields.io/twitter/follow/tuvalframework.svg?label=follow+tuvalframework)](https://twitter.com/tuvalframework)
 [![Follow on Youtube](https://img.shields.io/youtube/channel/views/UCIvOMAYBuLllvPIJp0o-opQ?style=social)](https://www.youtube.com/channel/UCIvOMAYBuLllvPIJp0o-opQ)
+
+Tuval framework veritabanı kütüphanesi, birden fazla veritabanı adaptörü kullanarak uygulama kalıcılığını yönetmek için basit ve hafif bir kütüphanedir. Bu kütüphane, öğrenmesi ve kullanması son derece kolay olmayı hedeflemektedir. Bu kütüphane [Appconda ekibi](https://appconda.io) tarafından bakım yapılmaktadır.
+
+Bu kütüphane [Tuval Framework](https://github.com/tuvalframework) projesinin bir parçası olmasına rağmen bağımlılık içermez ve herhangi bir Nodejs projesi veya framework ile bağımsız olarak kullanılabilir.
 
 ### Kavramlar
 
