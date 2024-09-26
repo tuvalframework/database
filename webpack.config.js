@@ -1,9 +1,18 @@
 const path = require('path');
 const DeclarationBundlerPlugin = require('./declaration-bundler-webpack-plugin.fix');
-const DtsBundleWebpack = require('dts-bundle-webpack');
-const fs = require('fs');
+const NodeLoader = require('node-loader'); // Optional: Not required, but included for clarity
+const nodeExternals = require('webpack-node-externals'); // Add this line
 
-var libraryName = '@tuval/core';
+
+
+const opts = {
+    WP: false,
+    WEB: false,
+    NODE: true,
+    version: 3,
+    "ifdef-verbose": true, // add this for verbose output
+    //"ifdef-triple-slash": false // add this to use double slash comment instead of default triple slash
+};
 
 function DtsBundlePlugin() { }
 DtsBundlePlugin.prototype.apply = function (compiler) {
@@ -24,26 +33,24 @@ DtsBundlePlugin.prototype.apply = function (compiler) {
     });
 };
 
-const opts = {
-    WEB: true,
-    NODE: false,
-    WP: false,
-    version: 3,
-    "ifdef-verbose": true, // add this for verbose output
-    //"ifdef-triple-slash": false // add this to use double slash comment instead of default triple slash
-};
+var libraryName = '@tuval/core';
 
-const umdConfig = {
+const nodeConfig = {
     mode: 'development',
+    target: 'node',
     devtool: 'source-map',
     //devtool: 'none',
-    entry: './src/tuval-core.ts',
+    entry: './src/index.ts',
     module: {
         rules: [
             /*   {
                 test: /\.js$/,
                 use: ['babel-loader', 'webpack-conditional-loader']
               }, */
+            {
+                test: /\.node$/,
+                use: 'node-loader',
+            },
             {
                 test: /\.(wasm|eot|woff|woff2|svg|ttf)([\?]?.*)$/,
                 type: 'javascript/auto',
@@ -94,34 +101,35 @@ const umdConfig = {
             url: false,
             http: false,
             https: false,
-            assert: false,
-            'follow-redirects': false,
-            "stream": false,
+            'follow-redirects': false
         }
     },
+    externals: [nodeExternals()], // Add this line to exclude node_modules
     output: {
-        libraryTarget: 'umd',
+        /* libraryTarget: 'global', */
         filename: 'index.js',
+        library: {
+            name: 'Tuval',
+            type: 'umd',
+        },
         path: path.resolve(__dirname, 'dist'),
     },
-    plugins: [{
-        apply: (compiler) => {
-            compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
-                fs.appendFile('./dist/index.js', `
-tuval$core.KeyboardDriver.Start();
-tuval$core.MouseDriver.Start();
-tuval$core.EventBus.Default.on('error', (event) => {
-   setTimeout(()=>console.error(event.error),1);
-   return false;
-});
-tuval$core.EventBus.Default.fire('module.loaded.core', {});
-`, (err) => {
-                    if (err) throw err;
-                    console.log('The lyrics were updated!');
+    plugins: [
+        {
+            apply: (compiler) => {
+                compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
+                    var dts = require('dts-bundle');
+
+                    dts.bundle({
+                        name: libraryName,
+                        main: 'dist_types/types/index.d.ts',
+                        out: '../../dist/index.d.ts',
+                        removeSource: true,
+                        outputAsModuleFolder: true // to use npm in-package typings
+                    });
                 });
-            });
-        }
-    }
+            }
+        },
         /* new DtsBundleWebpack({
             name:libraryName,
             main: 'dist_types/types/index.d.ts',
@@ -156,4 +164,4 @@ tuval$core.EventBus.Default.fire('module.loaded.core', {});
     ]
 };
 
-module.exports = [umdConfig /* webClientConfig */ /* umdConfig */ /* , umdWebProcess */];
+module.exports = [nodeConfig /* webClientConfig */ /* umdConfig */ /* , umdWebProcess */];
