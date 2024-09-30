@@ -591,7 +591,7 @@ export class Database {
         return true;
     }
 
-    public async exists(database: string | null = null, collection: string): Promise<boolean> {
+    public async exists(database: string | null = null, collection?: string): Promise<boolean> {
         if (this.adapter.getSharedTables() && !this.adapter.getTenant()) {
             throw new Error('Missing tenant. Tenant must be set when table sharing is enabled.');
         }
