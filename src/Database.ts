@@ -13,7 +13,7 @@ import { Permissions } from './Validators/Permissions';
 import { Document as DocumentValidator } from './Validators/Queries/Document';
 import { Documents as DocumentsValidator } from './Validators/Queries/Documents';
 import { Duplicate as DuplicateException } from './Exceptions/Duplicate';
-import { Limit as LimitException } from './Exceptions/Limit';
+import { LimitException as LimitException } from './Exceptions/Limit';
 import { Query as QueryException } from './Exceptions/Query';
 import { Timeout as TimeoutException } from './Exceptions/Timeout';
 import { Conflict as ConflictException } from './Exceptions/Conflict';
