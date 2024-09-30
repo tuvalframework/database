@@ -1,6 +1,6 @@
 {
     "name": "@tuval/database",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "",
     "keywords": [],
     "main": "index.js",
@@ -26,9 +26,7 @@
         "node": ">=6.0.0"
     },
     "scripts": {
-
         "build": "webpack --config webpack.config.js"
-        
     },
     "lint-staged": {
         "{src,test}/**/*.ts": [
