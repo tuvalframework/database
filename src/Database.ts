@@ -21,7 +21,7 @@ import { Restricted as RestrictedException } from './Exceptions/Restricted';
 
 import { Structure as StructureException } from './Exceptions/Structure';
 import { Relationship as RelationshipException } from './Exceptions/Relationship';
-import { Authorization as AuthorizationException } from './Exceptions/Authorization';
+import { AuthorizationException as AuthorizationException } from './Exceptions/Authorization';
 import { Index } from './Validators/Index';
 import { ID } from './Helpers/ID';
 import { Structure } from './Validators/Structure';

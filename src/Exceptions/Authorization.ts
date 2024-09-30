@@ -1,4 +1,4 @@
 import { Exception as DatabaseException } from '../Exception';
 
-export class Authorization extends DatabaseException {
+export class AuthorizationException extends DatabaseException {
 }
