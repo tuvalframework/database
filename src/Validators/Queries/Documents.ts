@@ -1,12 +1,12 @@
 
 import { Database } from '../../Database';
 import { Document as UtopiaDocument } from '../../Document';
-import { Cursor } from '../../Validator/Query/Cursor';
-import { Filter } from '../../Validator/Query/Filter';
-import { Limit } from '../../Validator/Query/Limit';
-import { Offset } from '../../Validator/Query/Offset';
-import { Order } from '../../Validator/Query/Order';
-import { Select } from '../../Validator/Query/Select';
+import { Cursor } from '../../Validators/Query/Cursor';
+import { Filter } from '../../Validators/Query/Filter';
+import { Limit } from '../../Validators/Query/Limit';
+import { Offset } from '../../Validators/Query/Offset';
+import { Order } from '../../Validators/Query/Order';
+import { Select } from '../../Validators/Query/Select';
 import { IndexedQueries } from '../IndexedQueries';
 
 export class Documents extends IndexedQueries {

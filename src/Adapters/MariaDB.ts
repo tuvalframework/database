@@ -5,7 +5,7 @@ import { Document } from '../Document';
 import { Exception as DatabaseException } from '../Exception';
 import { Duplicate as DuplicateException } from '../Exceptions/Duplicate';
 import { Query } from '../Query';
-import { Authorization } from '../Validator/Authorization';
+import { Authorization } from '../Validators/Authorization';
 import { Truncate as TruncateException } from '../Exceptions/Truncate';
 import { Timeout as TimeoutException } from '../Exceptions/Timeout';
 

@@ -1,5 +1,5 @@
 
-import { Select } from '../../Validator/Query/Select';
+import { Select } from '../../Validators/Query/Select';
 import { Document as DBDocument } from '../../Document';
 import { Queries } from '../Queries';
 import { Database } from '../../Database';
