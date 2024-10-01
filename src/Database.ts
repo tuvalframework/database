@@ -4698,7 +4698,7 @@ export class Database {
      *
      * @return void
      */
-    public static addFilter(name: string, encode: Function, decode: (value: any) => any): void {
+    public static addFilter(name: string, encode: Function, decode: Function): void {
         this.filters[name] = {
             encode: encode,
             decode: decode,
