@@ -263,9 +263,9 @@ export class Database {
         'indexes': [],
     });
 
-    protected static filters: Record<string, { encode: (...value: any[]) => any, decode: (...value: any[]) => any }> = {};
+    protected static filters: Record<string, { encode: Function, decode: Function }> = {};
 
-    protected instanceFilters: Record<string, { encode: (...value: any[]) => any, decode: (...value: any[]) => any }> = {};
+    protected instanceFilters: Record<string, { encode: Function, decode: Function }> = {};
 
     protected listeners: Record<string, Record<string, (event: string, args: any) => void>> = {
         '*': {},
@@ -501,7 +501,7 @@ export class Database {
         return this;
     }
 
-    public getInstanceFilters(): Record<string, { encode: (value: any) => any, decode: (value: any) => any }> {
+    public getInstanceFilters(): Record<string, { encode: Function, decode: Function }> {
         return this.instanceFilters;
     }
 
@@ -4698,7 +4698,7 @@ export class Database {
      *
      * @return void
      */
-    public static addFilter(name: string, encode: (value: any) => any, decode: (value: any) => any): void {
+    public static addFilter(name: string, encode: Function, decode: (value: any) => any): void {
         this.filters[name] = {
             encode: encode,
             decode: decode,
